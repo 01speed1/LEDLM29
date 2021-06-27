@@ -1,7 +1,8 @@
 module AlertsItsATrapService
+
   def self.call
     alert_sensor = SensorCounter.joins(sensor: :sensor_tracks)
-                    .where("count >= 30")
+                    .where("count > 29")
                     .pluck('"sensors"."position"',
                            '"sensor_tracks"."ship"',
                            '"sensor_tracks"."value"',

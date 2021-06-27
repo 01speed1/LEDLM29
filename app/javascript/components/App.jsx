@@ -1,21 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Sensors from './Sensors';
 import WarningSignal from './Sensors/WarningSignal';
 
-export default function App() {
-  const mockedData = [
-    { ship: 'Eagle Master', value: 100, position: 1 },
-    { ship: 'Eagle Master 2', value: 99, position: 2 },
-    { ship: 'Eagle Master 3', value: 204, position: 3 },
-    { ship: 'Eagle Master 4', value: 369, position: 4 },
-    { ship: 'Eagle Master 5', value: 20, position: 5 },
-    { ship: 'Eagle Master 5', value: 20, position: 5 },
-    { ship: 'Eagle Master 5', value: 20, position: 5 },
-    { ship: 'Eagle Master 5', value: 20, position: 5 }
-  ];
+import { updateSensors } from './Sensors/sensors.service';
 
-  const [sensors, setSensors] = useState(mockedData || []);
+export default function App() {
+  let queryInterval;
+  const [sensors, setSensors] = useState([]);
+
+  useEffect(async () => {
+    queryInterval = setInterval(() => updateSensors(setSensors), 1000);
+    return () => {
+      clearInterval(queryInterval);
+    };
+  }, []);
 
   const isActive = () => !!sensors.length;
 
