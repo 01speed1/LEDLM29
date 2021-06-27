@@ -1,0 +1,2 @@
+class AlertsItsATrapService
+end
