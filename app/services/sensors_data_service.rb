@@ -22,13 +22,13 @@ class SensorsDataService
         position: index,
         ship: values[0],
         value: values[1].to_i,
-        timetrack: get_timetrack
+        time_tracking: get_time_tracking
       }
 
     end
   end
 
-  def get_timetrack
+  def get_time_tracking
     split_data[0]
   end
 

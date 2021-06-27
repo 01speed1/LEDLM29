@@ -9,25 +9,24 @@ class SensorsAnalyzerService
   end
 
   def save_sensor
-    sensor = Sensor.find_or_create(position: parsed_data[:position])
+    self.sensor = Sensor.find_or_create_by(position: parsed_data[:position])
   end
 
   def save_sensor_tracking
     sensor_track_data = parsed_data.merge(sensor_id: save_sensor.id)
     sensor_track_data.delete(:position)
-    sensor_track = SensorTrack.create!(sensor_track_data)
+    self.sensor_track = SensorTrack.create!(sensor_track_data)
   end
 
   def save_sensor_counter
     prev_track = SensorTrack
-      .find_by(sensor_id: sensor.id)
-      .where("time_tracking < ? ", sensor_track.time_tracking)
-      .order("DESC time_tracking")
+      .where("sensor_id = ? AND time_tracking < ? ", sensor.id, sensor_track.time_tracking)
+      .order(:time_tracking, :desc)
       .first
 
-    sensor_counter = SensorCounter.find_by(sensor_id: sensor.id)
+    sensor_counter = SensorCounter.find_or_create_by(sensor_id: sensor.id)
 
-    increse = should_increse?(prev_track, should_increse) ? sensor.counter++ : 0
+    increse = should_increse?(prev_track, sensor_track) ? sensor_counter.count+1 : 0
 
     sensor_counter.update(count: increse)
   end
@@ -35,7 +34,8 @@ class SensorsAnalyzerService
   private
 
   def should_increse?(prev_track, sensor_track)
-   prev_track.value > 99 && sensor_track.value > 99
+    #puts { prev_track: prev_track, sensor_track: sensor_track }
+    prev_track && prev_track.value > 99 && sensor_track.value > 99
   end
 
 end

@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2021_06_27_034016) do
   create_table "sensor_tracks", force: :cascade do |t|
     t.integer "value"
     t.string "ship"
-    t.datetime "time_traking"
+    t.datetime "time_tracking"
     t.integer "sensor_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
