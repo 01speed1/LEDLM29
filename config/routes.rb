@@ -3,5 +3,7 @@ Rails.application.routes.draw do
 
   root "static#index"
 
-  resources :sensors
+  resources :sensors, only: [:create]
+
+  resources :alerts_its_a_trap, only: [:index]
 end
