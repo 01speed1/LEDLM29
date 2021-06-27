@@ -1,3 +1,3 @@
-class Sensor < ActiveRecord
+class Sensor < ApplicationRecord
 
 end
