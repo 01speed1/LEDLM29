@@ -24,6 +24,7 @@ class SensorsDataService
         value: values[1].to_i,
         time_tracking: get_time_tracking
       }
+
       SensorsAnalyzerService.new(data)
     end
   end

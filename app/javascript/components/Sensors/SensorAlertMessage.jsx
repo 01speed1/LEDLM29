@@ -1,9 +1,21 @@
 import React from 'react';
 
-export default function SensorAlertMessage({ position, ship, value }) {
+const cardStyle = {
+  width: '48%',
+  marginLeft: '5px',
+  marginRight: '5px'
+};
+
+export default function SensorAlertMessage({
+  position,
+  ship,
+  value,
+  time_tracking
+}) {
   return (
-    <div className="sensor box">
+    <div style={cardStyle} className="sensor box">
       <div className="sensor_position title">Sensor #{position}</div>
+      <span> {time_tracking} </span>
       <div className="columns">
         <div className="column sensor_ship">
           <div className="subtitle">Ship kind detected:</div>
