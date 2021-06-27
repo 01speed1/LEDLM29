@@ -3,10 +3,9 @@ class SensorsController < ApplicationController
 
   def create
     sensor_data_sanatized.each do |sensor_data|
-      response = SensorsDataService.new(sensor_data)
-      response.get_sensors_data
+      parsed_data = SensorsDataService.new(sensor_data)
+      analyzed_sensor = SensorsAnalyzerService.new(parsed_data.get_sensors_data)
     end
-    #response = SensorsDataService.new(sanatized_params)
     render json: {data: "batalla recibida"}
   end
 

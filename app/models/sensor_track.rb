@@ -1,5 +1,2 @@
 class SensorTrack < ActiveRecord
-
-
-  
 end

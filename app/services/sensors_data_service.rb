@@ -4,7 +4,6 @@ class SensorsDataService
 
   def initialize(sensor_data)
     self.sensor_data = sensor_data
-    #"2021-06-25 21:21:34,(Bomber|300),(Bomber|300),(Bomber|300),(-|34),(-|86),(-|80),(-|28),(-|26),(-|44),(-|91)"
   end
 
   def split_data
@@ -22,7 +21,7 @@ class SensorsDataService
       {
         position: index,
         ship: values[0],
-        value: values[1],
+        value: values[1].to_i,
         timetrack: get_timetrack
       }
 
