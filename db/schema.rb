@@ -10,12 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_26_220004) do
+ActiveRecord::Schema.define(version: 2021_06_27_034016) do
+
+  create_table "sensor_counters", force: :cascade do |t|
+    t.integer "count", default: 0
+    t.integer "sensor_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["sensor_id"], name: "index_sensor_counters_on_sensor_id"
+  end
 
   create_table "sensor_tracks", force: :cascade do |t|
     t.integer "value"
     t.string "ship"
-    t.datetime "time_traking"
+    t.datetime "time_tracking"
     t.integer "sensor_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -28,5 +36,6 @@ ActiveRecord::Schema.define(version: 2021_06_26_220004) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "sensor_counters", "sensors"
   add_foreign_key "sensor_tracks", "sensors"
 end

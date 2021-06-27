@@ -1,5 +1,2 @@
-class SensorTrack < ActiveRecord
-
-
-  
+class SensorTrack < ApplicationRecord
 end
