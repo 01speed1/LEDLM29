@@ -18,13 +18,13 @@ class SensorsDataService
     get_data.map.with_index do |sensor, index|
       values = sensor.gsub(/[()]/, "").split("|")
 
-      {
+      data = {
         position: index,
         ship: values[0],
         value: values[1].to_i,
         time_tracking: get_time_tracking
       }
-
+      SensorsAnalyzerService.new(data)
     end
   end
 
