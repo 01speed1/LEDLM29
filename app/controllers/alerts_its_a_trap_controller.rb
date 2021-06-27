@@ -1,11 +1,7 @@
 class AlertsItsATrapController < ApplicationController
 
   def index
-    render json: { sensors: [ {position: 0,
-                  ship: "Bomber",
-                  value: 100,
-                  time_tracking: "2021-06-25 21:21:34",
-                  count_tracker: 29} ] }
+    render json: { sensors: AlertsItsATrapService.() }
   end
 
 end
